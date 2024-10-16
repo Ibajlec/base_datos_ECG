@@ -1,15 +1,19 @@
 import wfdb
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
 # Define the path to the directory containing the data files
 path = 'mit-bih-arrhythmia-database-1.0.0/'
-
+record_name = '100'
+ruta = os.path.join(path, record_name)
 # Load the ECG data from the .dat file using the full path (record name without file extension)
-record = wfdb.rdrecord(path + '100')  # This loads 100.dat and 100.hea
+record = wfdb.rdrecord(ruta)  # This loads 100.dat and 100.hea
 print(dir(record))
 # # Load the annotations from the .atr file
-# annotation = wfdb.rdann(path + '100', 'atr')  # This loads the 100.atr file
+annotation = wfdb.rdann(ruta, 'atr')  # This loads the 100.atr file
+
+#print(f'los comments son {record.comments}')
 
 # # Display the basic information about the record
 # print(f"Signal length: {len(record.p_signal)} samples")
